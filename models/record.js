@@ -26,9 +26,7 @@ const userSchema = new Schema({
         required: true
     },
     categoryId: {  // 加入關聯設定
-        type: Schema.Types.ObjectId,
-        ref: 'Category',
-        index: true,
+        type: Number,
         required: true
     }
 })

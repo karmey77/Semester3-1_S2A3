@@ -69,17 +69,20 @@ db.once('open', async () => {
                     account: SEED_USER.account,
                     password: hash
                 })
-                const userId = user._id
-                return SEED_RECORDS.filter((SEED_RECORD) => SEED_RECORD.userId === SEED_USER.id).map(async (SEED_RECORD) => {
-                    await Record.create({
-                        id: SEED_RECORD.id,
-                        name: SEED_RECORD.name,
-                        date: new Date(SEED_RECORD.date),
-                        amount: SEED_RECORD.amount,
-                        userId: user._id,
-                        categoryId: Number(SEED_RECORD.categoryId)
-                    });
-                });
+                const userId = user._id;
+
+                for (const SEED_RECORD of SEED_RECORDS) {
+                    if (SEED_RECORD.userId === SEED_USER.id) {
+                        await Record.create({
+                            id: SEED_RECORD.id,
+                            name: SEED_RECORD.name,
+                            date: new Date(SEED_RECORD.date),
+                            amount: SEED_RECORD.amount,
+                            userId: userId,
+                            categoryId: Number(SEED_RECORD.categoryId)
+                        });
+                    }
+                }
             })
         )
 

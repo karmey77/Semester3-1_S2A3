@@ -1,3 +1,44 @@
-<p>HOME</p>
+<!DOCTYPE html>
+<html lang="en">
 
-{{{body}}}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{!-- <link rel="icon"
+        href="https://scontent.xx.fbcdn.net/v/t1.6435-9/48367595_2050075931766234_1677474854128844800_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=T-Gz7CleNZsAX__zBzb&_nc_ht=scontent.ftpe7-1.fna&oh=00_AfCgbwl_olydbSoFzXKFil7IXBM8EjVO_q0y8eVR2kLAxg&oe=64DD7A8B&_nc_fr=ftpe7c01"> --}}
+    <title>家庭記帳本</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="/stylesheets/show.css">
+</head>
+
+<header>
+    <!-- navigation -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                {{!-- <img src="https://scontent.xx.fbcdn.net/v/t1.6435-9/48367595_2050075931766234_1677474854128844800_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=T-Gz7CleNZsAX__zBzb&_nc_ht=scontent.ftpe7-1.fna&oh=00_AfCgbwl_olydbSoFzXKFil7IXBM8EjVO_q0y8eVR2kLAxg&oe=64DD7A8B&_nc_fr=ftpe7c01"
+                    width="30" height="30" class="d-inline-block align-center"> --}}
+                {{#if isAuthenticated}}{{user.name}} 的家庭記帳本
+                {{else}} 家庭記帳本
+                {{/if}}
+            </a>
+            {{#if isAuthenticated}}
+            <a href="/users/logout" class="btn btn-outline-dark">登出 / Logout</a>
+            {{else}}
+            <a href="/users/login" class="btn btn-outline-dark">登入 / Login</a>
+            {{/if}}
+        </div>
+    </nav>
+</header>
+
+<body>
+    <!-- partial templates will replace the part of "body" here -->
+    {{{ body }}}
+
+    <script src="/javascripts/popper.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
+</body>
+
+</html>

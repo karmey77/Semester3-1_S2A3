@@ -1,1 +1,54 @@
-<p>HOME</p>
+<div class="container mt-5" align="center">
+    <div>
+        <div class="col-2" style="display: inline-block;">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-bs-toggle="dropdown" aria-expanded="false" style=" width: 100%;">
+                    {{#if sort includeZero=true}}
+                    {{sort}}
+                    {{else}}
+                    類別
+                    {{/if}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="/sort/asc">家居物業</a></li>
+                    <li><a class="dropdown-item" href="/sort/desc">交通出行</a></li>
+                    <li><a class="dropdown-item" href="/sort/rating">休閒娛樂</a></li>
+                    <li><a class="dropdown-item" href="/sort/category">餐飲食品</a></li>
+                    <li><a class="dropdown-item" href="/sort/location">其他</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex;  justify-content: center; align-items: center;" align="center">
+        <p align="center" style="vertical-align: middle;">總金額：</p>
+        <h1 align="center" style="vertical-align: middle; color:coral;">{{totalAmount}}</h1>
+    </div>
+    <ul class="list-group" style="width: 50%;">
+        {{#each records}}
+        <li class="list-group-item">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center" style=" display: inline;">
+                    <div>
+                        <img src='{{ this.iconUrl }}' width="50" height="50" style="vertical-align: middle;">
+                    </div>
+                    <div style="display: inline; vertical-align: middle; text-align:left; padding-left: 10px;">
+                        <h4 class="mb-0" style="vertical-align: middle; text-align:left;">{{ this.name }}</h4>
+                        <p class="mb-0" style="vertical-align: middle; text-align:left;">{{ this.formattedDate }}</p>
+                    </div>
+                </div>
+
+                <div>
+                    <a class="btn btn-success" href="./records/{{ this._id }}/edit">edit</a>
+                    <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+                        <button class="btn btn-danger" type="submit">delete</button>
+                    </form>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+
+    <a class="btn btn-outline-dark" style="margin-top: 10px; width: 45%;" align="center" href="/records/new">Create</a>
+</div>

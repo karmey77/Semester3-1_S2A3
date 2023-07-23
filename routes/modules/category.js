@@ -6,7 +6,7 @@ const Record = require('../../models/record')
 
 // search
 router.get('/:categoryId', (req, res) => {
-    const userId = "64bd05a49c683b9ad2e1a686"
+    const userId = req.user._id   // 變數設定
     const categoryId = req.params.categoryId
 
     console.log(categoryId)

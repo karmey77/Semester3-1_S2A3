@@ -7,6 +7,7 @@ const Record = require('../../models/record')
 
 // 定義首頁路由
 router.get('/', (req, res) => {
+    // const userId = req.user._id   // 變數設定
 
     function formatDate(date) {
         const year = date.getFullYear();
@@ -15,7 +16,6 @@ router.get('/', (req, res) => {
         return `${year}-${month}-${day}`;
     }
 
-    // const userId = req.user._id   // 變數設定
     Record.find()         // 加入查詢條件{ userId }
         .lean()
         .sort({ date: 'desc' })

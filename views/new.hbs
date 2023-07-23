@@ -1,0 +1,53 @@
+<form action="/records" method="POST" style="display: inline;">
+    <div class="container mt-5" align="center">
+        <div style="display: flex;  justify-content: center; align-items: center;" align="center">
+            <p align="center" style="vertical-align: middle; padding-right: 5%">*必填欄位</p>
+            <h2 align="center" style="vertical-align: middle;">請輸入您的支出</h1>
+        </div>
+
+        <div class="row" style="width: 50%; padding-top: 5%; padding-left: 5%;">
+            <div class="col-12 col-md-10 mx-auto">
+                <p class="mb-5" style="display: flex;  justify-content: left; align-items: center;" align="center">
+                    <span class="text-secondary" style="display: inline;">
+                        <i class="fas fa-mobile-alt pr-2"></i>
+                        *消費項目：
+                    </span>
+                    <input class="form-control" type="text" placeholder="name" name="name" style="width: 75%;">
+                </p>
+                <p class="mb-5" style="display: flex;  justify-content: left; align-items: center;" align="center">
+                    <span class="text-secondary">
+                        <i class="fas fa-mobile-alt pr-2"></i>
+                        *消費日期：
+                    </span>
+                    <input class="form-control" type="date" placeholder="" name="date" style="width: 75%;">
+                </p>
+                <p class="mb-5" style="display: flex;  justify-content: left; align-items: center;" align="center">
+                    <span class="text-secondary">
+                        <i class="fas fa-mobile-alt pr-2"></i>
+                        *消費類別：
+                    </span>
+                    <select class="form-control" name="categoryId" style="width: 75%;">
+                        <option value="1">家居物業</option>
+                        <option value="2">交通出行</option>
+                        <option value="3">休閒娛樂</option>
+                        <option value="4">餐飲食品</option>
+                        <option value="5">其他</option>
+                    </select>
+                    {{!-- <input class="form-control" type="" placeholder="category" name="categoryID" style="width: 75%;"> --}}
+                </p>
+                <p class="mb-5" style="display: flex;  justify-content: left; align-items: center;" align="center">
+                    <span class="text-secondary">
+                        <i class="fas fa-mobile-alt pr-2"></i>
+                        *消費金額：
+                    </span>
+                    <input class="form-control" type="text" placeholder="amount" name="amount" style="width: 75%;">
+                </p>
+            </div>
+
+        </div>
+
+        <button class="btn btn-success" type="submit" align="center">Create</button>
+    </div>
+    </div>
+
+</form>

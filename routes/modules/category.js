@@ -1,13 +1,15 @@
 // 引用 Express 與 Express 路由器
 const express = require('express')
 const router = express.Router()
-const Category = require('../../models/category')
-const User = require('../../models/user')
 const Record = require('../../models/record')
+// const restaurantData = require('./restaurantData')
 
-// 定義首頁路由
-router.get('/', (req, res) => {
-    // const userId = req.user._id   // 變數設定
+// search
+router.get('/:categoryId', (req, res) => {
+    const userId = "64bd05a49c683b9ad2e1a686"
+    const categoryId = req.params.categoryId
+
+    console.log(categoryId)
 
     function formatDate(date) {
         const year = date.getFullYear();
@@ -16,7 +18,8 @@ router.get('/', (req, res) => {
         return `${year}-${month}-${day}`;
     }
 
-    Record.find()         // 加入查詢條件{ userId }
+
+    return Record.find({ userId, categoryId })
         .lean()
         .sort({ date: 'desc' })
         .then(records => {
@@ -35,6 +38,8 @@ router.get('/', (req, res) => {
                 record.formattedDate = formatDate(record.date)
             })
 
+            console.log(records)
+
             res.render('index', {
                 records: records,
                 totalAmount: totalAmount
@@ -44,5 +49,4 @@ router.get('/', (req, res) => {
         .catch(error => console.error(error))
 })
 
-// 匯出路由模組
 module.exports = router

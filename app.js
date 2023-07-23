@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const routes = require('./routes') // 引用路由器
-// require('./config/mongoose')
+require('./config/mongoose')
 
 const app = express()
 const PORT = process.env.PORT || 3000

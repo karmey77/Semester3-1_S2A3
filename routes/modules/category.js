@@ -9,7 +9,7 @@ router.get('/:categoryId', (req, res) => {
     const userId = req.user._id   // 變數設定
     const categoryId = req.params.categoryId
 
-    console.log(categoryId)
+    // console.log(categoryId)
 
     function formatDate(date) {
         const year = date.getFullYear();
@@ -38,7 +38,7 @@ router.get('/:categoryId', (req, res) => {
                 record.formattedDate = formatDate(record.date)
             })
 
-            console.log(records)
+            // console.log(records)
 
             res.render('index', {
                 records: records,

@@ -1,10 +1,52 @@
-<form action="/records/{{ todo._id }}?_method=PUT" method="POST" style="display: inline;">
-    <div class="input-group">
-        <div class="input-group-text">
-            <input type="checkbox" class="form-check-input mt-0" name="isDone" {{#if record.isDone }} checked {{/if}}>
+<form action="/records/{{ record._id }}?_method=PUT" method="POST" style="display: inline;">
+    <div class="container mt-5" align="center">
+        <div style="display: flex;  justify-content: center; align-items: center;" align="center">
+            <p align="center" style="vertical-align: middle; padding-right: 5%">*必填欄位</p>
+            <h2 align="center" style="vertical-align: middle;">請修改您的支出</h1>
         </div>
-        <input class="form-control" type="text" placeholder="name" name="name" value="{{ record.name }}">
-        <input class="form-control" type="text" placeholder="name" name="name" value="{{ record.amount }}">
-        <button class="btn btn-success" type="submit">儲存</button>
+
+        <div class="row" style="width: 50%; padding-top: 5%; padding-left: 5%;">
+            <div class="col-12 col-md-10 mx-auto">
+                <p class="mb-5" style="display: flex;  justify-content: left; align-items: center;" align="center">
+                    <span class="text-secondary" style="display: inline;">
+                        <i class="fas fa-mobile-alt pr-2"></i>
+                        *消費項目：
+                    </span>
+                    <input class="form-control" type="text" placeholder="name" name="name" style="width: 75%;" value="{{ record.name }}">
+                </p>
+                <p class="mb-5" style="display: flex;  justify-content: left; align-items: center;" align="center">
+                    <span class="text-secondary">
+                        <i class="fas fa-mobile-alt pr-2"></i>
+                        *消費日期：
+                    </span>
+                    <input class="form-control" type="date" placeholder="" name="date" style="width: 75%;" value="{{ record.formattedDate }}">
+                </p>
+                <p class="mb-5" style="display: flex;  justify-content: left; align-items: center;" align="center">
+                    <span class="text-secondary">
+                        <i class="fas fa-mobile-alt pr-2"></i>
+                        *消費類別：
+                    </span>
+                    <select class="form-control" name="categoryId" style="width: 75%;" >
+                        <option value="1" {{#if record.categoryIdCheck1}} selected {{/if}} >家居物業</option>
+                        <option value="2" {{#if record.categoryIdCheck2}} selected {{/if}}>交通出行</option>
+                        <option value="3" {{#if record.categoryIdCheck3}} selected {{/if}}>休閒娛樂</option>
+                        <option value="4" {{#if record.categoryIdCheck4}} selected {{/if}}>餐飲食品</option>
+                        <option value="5" {{#if record.categoryIdCheck5}} selected {{/if}}>其他</option>
+                    </select>
+                    {{!-- <input class="form-control" type="" placeholder="category" name="categoryID" style="width: 75%;"> --}}
+                </p>
+                <p class="mb-5" style="display: flex;  justify-content: left; align-items: center;" align="center">
+                    <span class="text-secondary">
+                        <i class="fas fa-mobile-alt pr-2"></i>
+                        *消費金額：
+                    </span>
+                    <input class="form-control" type="text" placeholder="amount" name="amount" style="width: 75%;" value="{{ record.amount }}">
+                </p>
+            </div>
+
+        </div>
+
+        <button class="btn btn-success" type="submit" align="center">儲存</button>
+    </div>
     </div>
 </form>

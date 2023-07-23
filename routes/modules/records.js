@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 
+// create
 router.get('/new', (req, res) => {
     return res.render('new')
 })
@@ -9,7 +10,7 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
     const userId = "64bd05a49c683b9ad2e1a686"
     // const userId = req.user._id
-    const { name, categoryId, date, amount} = req.body
+    const { name, categoryId, date, amount } = req.body
     return Record.create({
         name,
         categoryId,
@@ -21,35 +22,47 @@ router.post('/', (req, res) => {
         .catch(error => console.log(error))
 })
 
-router.get('/:id', (req, res) => {
-    const userId = req.user._id
-    const _id = req.params.id
-    return Todo.findOne({ _id, userId })
-        .lean()
-        .then(todo => res.render('detail', { todo }))
-        .catch(error => console.log(error))
-})
-
+// edit
 router.get('/:id/edit', (req, res) => {
-    const userId = req.user._id
+
+    function formatDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    const userId = "64bd05a49c683b9ad2e1a686"
+    // const userId = req.user._id
     const _id = req.params.id
-    return Todo.findOne({ _id, userId })
+
+    return Record.findOne({ _id, userId })
         .lean()
-        .then(todo => res.render('edit', { todo }))
+        .then(record => {
+            record[`categoryIdCheck${record.categoryId}`] = true
+            record.formattedDate = formatDate(record.date)
+            res.render('edit', { record })
+        })
         .catch(error => console.log(error))
 })
 
 router.put('/:id', (req, res) => {
-    const userId = req.user._id
+
+    const userId = "64bd05a49c683b9ad2e1a686"
+    // const userId = req.user._id
     const _id = req.params.id
-    const { name, isDone } = req.body
-    return Todo.findOne({ _id, userId })
-        .then(todo => {
-            todo.name = name
-            todo.isDone = isDone === 'on'
-            return todo.save()
+    const { name, categoryId, date, amount } = req.body
+
+    return Record.findOne({ _id, userId })
+        .then(record => {
+            record.name = name
+            record.categoryId = categoryId
+            record.date = date
+            record.amount = amount
+            
+            return record.save()
         })
-        .then(() => res.redirect(`/todos/${_id}`))
+        .then(() => res.redirect(`/`))
         .catch(error => console.log(error))
 })
 

@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
                     其他: "./assets/5.png"
                 }
                 record.iconUrl = CATEGORY[Object.keys(CATEGORY)[record.categoryId-1]]
-                record.formattedDate = formatDate(record.date); // 假設有一個 formatDate 函式可以將日期格式化為 "YYYY-MM-DD" 字串
+                record.formattedDate = formatDate(record.date)
             })
 
             res.render('index', {

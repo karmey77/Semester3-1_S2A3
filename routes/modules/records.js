@@ -59,7 +59,7 @@ router.put('/:id', (req, res) => {
             record.categoryId = categoryId
             record.date = date
             record.amount = amount
-            
+
             return record.save()
         })
         .then(() => res.redirect(`/`))
@@ -67,10 +67,11 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    const userId = req.user._id
+    const userId = "64bd05a49c683b9ad2e1a686"
+    // const userId = req.user._id
     const _id = req.params.id
-    return Todo.findOne({ _id, userId })
-        .then(todo => todo.remove())
+    return Record.findOne({ _id, userId })
+        .then(record => record.remove())
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
 })

@@ -24,7 +24,7 @@
 
     <div style="display: flex;  justify-content: center; align-items: center;" align="center">
         <p align="center" style="vertical-align: middle;">總金額：</p>
-        <h1 align="center" style="vertical-align: middle; color:coral;">{{totalAmount}}</h1>
+        <h1 align="center" style="vertical-align: middle; color:coral;">{{totalAmount}} 元</h1>
     </div>
     <ul class="list-group" style="width: 50%;">
         {{#each records}}
@@ -38,6 +38,10 @@
                         <h4 class="mb-0" style="vertical-align: middle; text-align:left;">{{ this.name }}</h4>
                         <p class="mb-0" style="vertical-align: middle; text-align:left;">{{ this.formattedDate }}</p>
                     </div>
+                </div>
+                <div
+                    style="display: inline; vertical-align: middle; text-align:right; justify-content:flex-end;">
+                    <h4 class="mb-0" style="vertical-align: middle; text-align:right;">{{ this.amount }} 元</h4>
                 </div>
 
                 <div>

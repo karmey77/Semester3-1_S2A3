@@ -17,21 +17,7 @@ router.post('/login', passport.authenticate('local', {
 
 router.get('/register', (req, res) => {
 
-    async function getRegisteredNumber() {
-        try {
-            return await User.find()
-                .lean()
-                .then(registerSubjects => registerSubjects.length)
-                .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: '發生錯誤' });
-        }
-    }
-
-    getRegisteredNumber()
-        .then(registerNumber => res.render('register', { registerNumber: registerNumber - 5 }))
-        .catch(error => console.error(error))
+    res.render('register')
     // res.render('register')
 })
 
@@ -42,7 +28,7 @@ router.post('/register', (req, res) => {
         errors.push({ message: '所有欄位都是必填！' })
     }
     if (password !== confirmPassword) {
-        errors.push({ message: '密碼 與 確認密碼不相符！' })
+        errors.push({ message: '密碼 與 確認密碼 不相符！' })
     }
     if (errors.length) {
         return res.render('register', {
@@ -72,10 +58,6 @@ router.post('/register', (req, res) => {
                 account,
                 password: hash // 用雜湊值取代原本的使用者密碼
             }))
-            .then(user => {
-                const userId = user._id
-                return Times.create({ kissTimes: 0, userId })
-            })
             .then(() => res.redirect('/'))
             .catch(err => console.log(err))
     })
